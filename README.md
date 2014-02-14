@@ -64,4 +64,4 @@ def trampoline(start):
 284625968091705451890641321211986889014805... it's a really big number
 </pre>
 
-<p>hooray! it runs (reasonably quickly, too). what's even better, it works for functions that have tail calls but aren't tail recursive, like the typical mutually recursive functions odd and even. if you want to check out the complete source for this, it's available <a href="https://github.com/0x65/trampoline">here</a>.</p>
+<p>hooray! it runs (reasonably quickly, too). what's even better, it works for functions that have tail calls but aren't tail recursive, like the typical mutually recursive functions odd and even. it's not perfect -- stuff like inspect.getsource and exec get in the way too much -- but it is an interesting exerise. if you want to check out the complete source for this, it's available <a href="https://github.com/0x65/trampoline">here</a>.</p>
