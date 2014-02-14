@@ -52,8 +52,25 @@ def factorial(n, acc=1):
     return factorial(n-1, n*acc)
 
 
-ast = parse(getsource(factorial))
-tco_ast = fix_missing_locations(TrampolineTransform().visit(ast))
-exec compile(tco_ast, __name__, 'exec')
+def odd(n):
+    if n == 1: return True
+    return even(n-1)
 
-print trampoline(lambda: factorial(1000))
+
+def even(n):
+    if n == 1: return False
+    return odd(n-1)
+
+
+def compile_tco(f):
+    ast = parse(getsource(f))
+    tco_ast = fix_missing_locations(TrampolineTransform().visit(ast))
+    return compile(tco_ast, __name__, 'exec')
+
+
+exec compile_tco(factorial)
+exec compile_tco(odd)
+exec compile_tco(even)
+
+print trampoline(lambda: factorial(10000))
+print trampoline(lambda: even(59392))
